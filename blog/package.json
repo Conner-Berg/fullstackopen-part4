@@ -3,7 +3,9 @@
 	"private": true,
 	"version": "0.0.0",
 	"scripts": {
-		"dev": "vite",
+		"devf": "vite",
+		"devb": "node index.js",
+		"dev": "concurrently --kill-others-on-fail \"npm run devb\" \"npm run devf\"",
 		"build": "vite build",
 		"preview": "vite preview",
 		"lint": "eslint ."
@@ -21,6 +23,7 @@
 		"@types/react": "^18.0.28",
 		"@types/react-dom": "^18.0.11",
 		"@vitejs/plugin-react-swc": "^3.0.0",
+		"concurrently": "^8.0.1",
 		"eslint": "^8.38.0",
 		"eslint-plugin-react": "^7.32.2",
 		"vite": "^4.2.0"
