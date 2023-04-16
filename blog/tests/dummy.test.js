@@ -1,3 +1,4 @@
+const _ = require("lodash");
 const listHelper = require("../utils/list_helper");
 const blogs = require("../utils/list_helper").sampleBlogs;
 
@@ -48,17 +49,33 @@ describe("most blogs", () => {
 
 	test("when list has only one blog equals that blog's author", () => {
 		const result = listHelper.mostBlogs([blogs[0]]);
+
+		const authorBlogCounts = _.countBy([blogs[0]], "author");
+		const authorWithMost = _.maxBy(
+			Object.keys(authorBlogCounts),
+			(author) => authorBlogCounts[author]
+		);
+		const numOfBlogs = authorBlogCounts[authorWithMost];
+
 		expect(result).toEqual({
-			author: "Michael Chan",
-			blogs: 1,
+			author: authorWithMost,
+			blogs: numOfBlogs,
 		});
 	});
 
 	test("of a bigger list is calculated right", () => {
 		const result = listHelper.mostBlogs(blogs);
+
+		const authorBlogCounts = _.countBy(blogs, "author");
+		const authorWithMost = _.maxBy(
+			Object.keys(authorBlogCounts),
+			(author) => authorBlogCounts[author]
+		);
+		const numOfBlogs = authorBlogCounts[authorWithMost];
+
 		expect(result).toEqual({
-			author: "Robert C. Martin",
-			blogs: 3,
+			author: authorWithMost,
+			blogs: numOfBlogs,
 		});
 	});
 });
