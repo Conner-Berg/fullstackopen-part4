@@ -14,7 +14,7 @@ dist-ssr
 .env
 
 # Editor directories and files
-requests/
+requests
 .vscode/*
 !.vscode/extensions.json
 .idea
